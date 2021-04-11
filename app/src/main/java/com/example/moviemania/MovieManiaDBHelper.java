@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class MovieManiaDBHelper extends SQLiteOpenHelper {
     private static final String DBName = "MovieMania.db";
     private static final String TABLE1 = "RegisterMovieTable";
+    private static final String TABLE2 = "FavouriteMovieTable";
 
     private static final String TABLE1_COL1 = "TITLE";
     private static final String TABLE1_COL2 = "YEAR";
@@ -17,6 +18,8 @@ public class MovieManiaDBHelper extends SQLiteOpenHelper {
     private static final String TABLE1_COL5 = "RATINGS";
     private static final String TABLE1_COL6 = "REVIEW";
 
+    private static final String TABLE2_COL1 = "FAVTITLE";
+
     public MovieManiaDBHelper(Context context) {
         super(context, DBName, null, 1);
     }
@@ -24,6 +27,7 @@ public class MovieManiaDBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table " + TABLE1 + "(TITLE TEXT PRIMARY KEY, YEAR INTEGER, CASTOFMOVIE TEXT, DIRECTOR TEXT, RATINGS INTEGER, REVIEW TEXT)");
+        db.execSQL("create table " + TABLE2 + "(FAVTITLE TEXT PRIMARY KEY)");
     }
 
     @Override
@@ -45,10 +49,33 @@ public class MovieManiaDBHelper extends SQLiteOpenHelper {
         return result != -1;
     }
 
-    //To get all the columns in word table
+    //To get all movie names
     public Cursor getMovieTitle(){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("select TITLE from " + TABLE1 + " order by " + TABLE1_COL1,null);
         return cursor;
+    }
+
+    //Saving the Favourite Movies.
+    public boolean saveFavMovies(String title){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(TABLE2_COL1,title);
+        long result = db.insert(TABLE2,null,contentValues);
+        return result != -1;
+    }
+
+    //To get the favourite movies.
+    public Cursor getFavMovieTitle(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("select FAVTITLE from " + TABLE2 + " order by " + TABLE2_COL1,null);
+        return cursor;
+    }
+
+
+    //Deleting the movie from the Favourites Table.
+    public void removeFavMoive(String word){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE2,"FAVTITLE=?",new String[] { word });
     }
 }

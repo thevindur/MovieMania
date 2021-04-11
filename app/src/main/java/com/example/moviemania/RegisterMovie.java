@@ -78,17 +78,17 @@ public class RegisterMovie extends AppCompatActivity {
                 boolean insertData = movieManiaDBHelper.registerMovie(title,intYear,cast,director,intRating,review);
                 if (insertData){
                     Toast.makeText(RegisterMovie.this,"SAVED SUCCESSFULLY",Toast.LENGTH_LONG).show();
-                    movieTitle.getEditText().setText("");
+                    movieTitle.getEditText().getText().clear();
                     movieTitle.clearFocus();
-                    movieYear.getEditText().setText("");
+                    movieYear.getEditText().getText().clear();
                     movieYear.clearFocus();
-                    castOfMovie.getEditText().setText("");
+                    castOfMovie.getEditText().getText().clear();
                     castOfMovie.clearFocus();
-                    movieDirector.getEditText().setText("");
+                    movieDirector.getEditText().getText().clear();
                     movieDirector.clearFocus();
-                    movieRating.getEditText().setText("");
+                    movieRating.getEditText().getText().clear();
                     movieRating.clearFocus();
-                    movieReview.getEditText().setText("");
+                    movieReview.getEditText().getText().clear();
                     movieReview.clearFocus();
                 }else {
                     Toast.makeText(RegisterMovie.this,"FAILED TO SAVE",Toast.LENGTH_LONG).show();

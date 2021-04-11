@@ -4,17 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DisplayMovies"
+    tools:context=".Favourites"
     android:background="@color/defaultBgColor">
 
-
     <TextView
-        android:id="@+id/textViewDisplayMovies"
+        android:id="@+id/textViewFavourites"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/amarante"
-        android:text="@string/display_movies"
+        android:text="@string/favourite_movies"
         android:textColor="@color/white"
         android:textSize="45sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,18 +22,18 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
-        android:id="@+id/scrollView3"
+        android:id="@+id/scrollView"
         android:layout_width="384dp"
         android:layout_height="578dp"
         android:fillViewport="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewDisplayMovies"
+        app:layout_constraintTop_toBottomOf="@+id/textViewFavourites"
         app:layout_constraintVertical_bias="0.197">
 
         <ListView
-            android:id="@+id/movieListView"
+            android:id="@+id/favMovieListView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintVertical_bias="0.0"
@@ -42,16 +41,17 @@
     </ScrollView>
 
     <Button
-        android:id="@+id/btnFav"
+        android:id="@+id/btnSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:layout_marginBottom="32dp"
-        android:text="@string/add_to_favourites"
+        android:text="@string/save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView3"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView"
         app:layout_constraintVertical_bias="0.0"
-        android:onClick="onClickAddToFav"/>
+        android:onClick="favSave"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
