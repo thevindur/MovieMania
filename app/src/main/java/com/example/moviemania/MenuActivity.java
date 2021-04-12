@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 
 import java.util.Objects;
 
@@ -28,6 +29,11 @@ public class MenuActivity extends AppCompatActivity {
 
     public void favourites(View view) {
         Intent homeIntent = new Intent(this,Favourites.class);
+        startActivity(homeIntent);
+    }
+
+    public void editMovies(View view) {
+        Intent homeIntent = new Intent(this, EditMovies.class);
         startActivity(homeIntent);
     }
 }

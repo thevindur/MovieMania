@@ -12,4 +12,5 @@
     <color name="btnBg1">#365C2D</color>
     <color name="btnBorder">#173716</color>
     <color name="defaultBgColor">#203640</color>
+    <color name="yellow">#fadb2a</color>
 </resources>

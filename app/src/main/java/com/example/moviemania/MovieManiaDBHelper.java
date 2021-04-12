@@ -56,6 +56,13 @@ public class MovieManiaDBHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
+    //To get all movie names
+    public Cursor getMovieDetails(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("select * from " + TABLE1 + " order by " + TABLE1_COL1,null);
+        return cursor;
+    }
+
     //Saving the Favourite Movies.
     public boolean saveFavMovies(String title){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -78,4 +85,23 @@ public class MovieManiaDBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE2,"FAVTITLE=?",new String[] { word });
     }
+
+    //Updating the Movie details.
+    public Boolean updateMovies(String title, int year, String castOfMovie, String director, int ratings, String review) {
+        SQLiteDatabase DB = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(TABLE1_COL1,title);
+        contentValues.put(TABLE1_COL2,year);
+        contentValues.put(TABLE1_COL3,castOfMovie);
+        contentValues.put(TABLE1_COL4,director);
+        contentValues.put(TABLE1_COL5,ratings);
+        contentValues.put(TABLE1_COL6,review);
+        Cursor cursor = DB.rawQuery("Select * from "+ TABLE1 +" where TITLE=?", new String[]{title});
+        if (cursor.getCount() > 0) {
+            long result = DB.update(TABLE1, contentValues, "TITLE=?", new String[]{title});
+            return result != -1;
+        } else {
+            return false;
+        }}
+
 }

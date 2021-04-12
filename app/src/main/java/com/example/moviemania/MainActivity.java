@@ -9,7 +9,7 @@ import android.os.Handler;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
-    private static final int SPLASH_TIME = 4220;  //Delay time before going to the second activity.
+    private static final int SPLASH_TIME = 3900;  //Delay time before going to the second activity.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
