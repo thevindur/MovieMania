@@ -36,4 +36,9 @@ public class MenuActivity extends AppCompatActivity {
         Intent homeIntent = new Intent(this, EditMovies.class);
         startActivity(homeIntent);
     }
+
+    public void searchMovies(View view) {
+        Intent homeIntent = new Intent(this, SearchMovie.class);
+        startActivity(homeIntent);
+    }
 }

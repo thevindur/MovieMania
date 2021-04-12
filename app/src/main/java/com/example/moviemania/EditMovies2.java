@@ -96,12 +96,13 @@ public class EditMovies2 extends AppCompatActivity {
             reviewList.add(cursor.getString(5));
         }
 
+        //Setting up the values accessed from the DB to the Fields.
         movieNameHeader.setText(nameList.get(index));
-        movieTitle.getEditText().setText(nameList.get(index));
-        movieYear.getEditText().setText(yearList.get(index));
-        castOfMovie.getEditText().setText(castList.get(index));
-        movieDirector.getEditText().setText(directorList.get(index));
-        movieReview.getEditText().setText(reviewList.get(index));
+        Objects.requireNonNull(movieTitle.getEditText()).setText(nameList.get(index));
+        Objects.requireNonNull(movieYear.getEditText()).setText(yearList.get(index));
+        Objects.requireNonNull(castOfMovie.getEditText()).setText(castList.get(index));
+        Objects.requireNonNull(movieDirector.getEditText()).setText(directorList.get(index));
+        Objects.requireNonNull(movieReview.getEditText()).setText(reviewList.get(index));
         ratingBar.setRating(ratingsList.get(index));
 
         Cursor cursor1 = movieManiaDBHelper.getFavMovieTitle();

@@ -18,4 +18,7 @@
     <string name="add_to_favourites">Add To Favourites</string>
     <string name="favourite_movies">Favourite Movies</string>
     <string name="update">Update</string>
+    <string name="search_movies">Search Movies</string>
+    <string name="enter_your_keywords_here">Enter Your Keywords Here</string>
+    <string name="lookup">Lookup</string>
 </resources>
