@@ -48,6 +48,7 @@ public class Ratings2 extends AppCompatActivity {
         movieFinalRating=findViewById(R.id.textViewFinalRating);
         moviePoster=findViewById(R.id.imageViewIMDB);
 
+        //Getting the selected movie name passed from the previous activity.
         Intent intent = getIntent();
         selectedMovie = intent.getExtras().getString("selectedMovie");
 
@@ -71,6 +72,7 @@ public class Ratings2 extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... voids) {
+            //Setting up the required urls.
             url = "https://imdb-api.com/en/API/SearchTitle/k_pg5zm10q";
             url1 = "https://imdb-api.com/en/API/UserRatings/k_pg5zm10q";
 
@@ -91,11 +93,13 @@ public class Ratings2 extends AppCompatActivity {
                         if (response.toString().contains("\"expression\": null") || response.toString().isEmpty()) {
                             nullTerm = true;
                         } else {
+                            //Getting the movie id from the API.
                             JSONObject jo = new JSONObject(response.toString());
                             JSONArray jsonArray = jo.getJSONArray("results");
                             JSONObject jo1 = jsonArray.getJSONObject(0);
                             outputData = (String) jo1.get("id");
 
+                            //Getting the image from the API.
                             imageURL = (String) jo1.get("image");
                             URL imageOutputURL = new URL(imageURL);
                             URLConnection conn = imageOutputURL.openConnection();
@@ -104,6 +108,7 @@ public class Ratings2 extends AppCompatActivity {
                             bmp = BitmapFactory.decodeStream(bis);
                             bis.close();
 
+                            //Accessing the relevant movie details using the movie id obtained from the previous JSON.
                             URL obj1 = new URL(url1 + "/" + outputData);
                             HttpURLConnection con1 = (HttpURLConnection) obj1.openConnection();
                             con1.setRequestMethod("GET");
@@ -146,6 +151,7 @@ public class Ratings2 extends AppCompatActivity {
             if (nullTerm) {
                 Toast.makeText(Ratings2.this,"Error",Toast.LENGTH_LONG).show();
             } else {
+                //Setting up the values and the images.
                 movieFinalTitle.setText(finalTitle);
                 moviePoster.setImageBitmap(bmp);
                 moviePoster.setVisibility(View.VISIBLE);

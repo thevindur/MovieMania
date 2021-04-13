@@ -13,4 +13,7 @@
     <color name="btnBorder">#173716</color>
     <color name="defaultBgColor">#203640</color>
     <color name="yellow">#fadb2a</color>
+    <color name="sBtnBg">#C1ED24</color>
+    <color name="sBtnBg1">#B5C1ED24</color>
+    <color name="sBtnBorder">#37C1ED24</color>
 </resources>

@@ -23,6 +23,7 @@ import java.util.Objects;
 public class EditMovies2 extends AppCompatActivity {
     private MovieManiaDBHelper movieManiaDBHelper;
     int index;
+    //Setting up arrayLists to save each column values separately.
     ArrayList<String> nameList = new ArrayList<>();
     ArrayList<String> yearList = new ArrayList<>();
     ArrayList<String> castList = new ArrayList<>();
@@ -63,7 +64,7 @@ public class EditMovies2 extends AppCompatActivity {
         ratingBar = findViewById(R.id.ratingBar);
         getMovieYear = findViewById(R.id.inputYearUpdate);
 
-        //Adding a text view and checkbox to indicate if the movie is a favourite moviee.
+        //Adding a text view and checkbox to indicate if the movie is a favourite movie.
         linearlayout = findViewById(R.id.linearFav);
         LinearLayout lin1 = new LinearLayout(this);
         lin1.setOrientation(LinearLayout.HORIZONTAL);
@@ -83,10 +84,13 @@ public class EditMovies2 extends AppCompatActivity {
     private void displayUpdateMovies() {
         Cursor cursor = movieManiaDBHelper.getMovieDetails();
 
+        //Checking if the db has any saved values.
         if (cursor.getCount() == 0){
             Toast.makeText(EditMovies2.this,"NO MOVIES ADDED",Toast.LENGTH_LONG).show();
             return;
         }
+
+        //Iterating through the db and saving each value in the relevant arrayList.
         while (cursor.moveToNext()){
             nameList.add(cursor.getString(0));
             yearList.add(cursor.getString(1));
@@ -105,6 +109,7 @@ public class EditMovies2 extends AppCompatActivity {
         Objects.requireNonNull(movieReview.getEditText()).setText(reviewList.get(index));
         ratingBar.setRating(ratingsList.get(index));
 
+        //Checking if the movie is a favourite movie or not and checking them accordingly.
         Cursor cursor1 = movieManiaDBHelper.getFavMovieTitle();
         if (cursor1.getCount() == 0){
             return;

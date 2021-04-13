@@ -56,6 +56,7 @@ public class RegisterMovie extends AppCompatActivity {
 
     //Adding the new movie to the database.
     public void registerMovieToDB(View view){
+        //Getting the values from the Text boxes and assigning them to Strings.
         String title = String.valueOf(Objects.requireNonNull(movieTitle.getEditText()).getText());
         String year = String.valueOf(Objects.requireNonNull(movieYear.getEditText()).getText());
         String cast = String.valueOf(Objects.requireNonNull(castOfMovie.getEditText()).getText());
@@ -78,6 +79,7 @@ public class RegisterMovie extends AppCompatActivity {
                 boolean insertData = movieManiaDBHelper.registerMovie(title,intYear,cast,director,intRating,review);
                 if (insertData){
                     Toast.makeText(RegisterMovie.this,"SAVED SUCCESSFULLY",Toast.LENGTH_LONG).show();
+                    //Clearing all the fields after data has been inserted.
                     movieTitle.getEditText().getText().clear();
                     movieTitle.clearFocus();
                     movieYear.getEditText().getText().clear();

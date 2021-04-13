@@ -39,11 +39,13 @@ public class EditMovies extends AppCompatActivity {
 
         int count = 1;
 
+        //Checking if the db has any saved values.
         if (cursor.getCount() == 0){
             Toast.makeText(EditMovies.this,"NO MOVIES ADDED",Toast.LENGTH_LONG).show();
             return;
         }
 
+        //Iterating through the db and printing the names to the list view using an adapter.
         while (cursor.moveToNext()){
             arrayList.add(count +" . " + cursor.getString(0));
             favArrayList.add(cursor.getString(0));

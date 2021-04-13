@@ -22,7 +22,7 @@
 
     <ScrollView
         android:id="@+id/scrollViewIMDB"
-        android:layout_width="394dp"
+        android:layout_width="385dp"
         android:layout_height="583dp"
         android:layout_marginTop="28dp"
         android:fillViewport="true"
@@ -39,11 +39,12 @@
             tools:ignore="NestedScrolling" />
     </ScrollView>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnIMDB"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="385dp"
+        android:layout_height="48dp"
         android:layout_marginTop="36dp"
+        android:background="@drawable/sub_button"
         android:text="@string/find_movie_in_imdb"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"

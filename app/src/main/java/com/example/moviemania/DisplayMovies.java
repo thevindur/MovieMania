@@ -45,16 +45,19 @@ public class DisplayMovies extends AppCompatActivity {
 
         int count = 1;
 
+        //Checking if the db has any saved values.
         if (cursor.getCount() == 0){
             Toast.makeText(DisplayMovies.this,"NO MOVIES ADDED",Toast.LENGTH_LONG).show();
             return;
         }
 
+        //Iterating through the db and printing the names to the list view using an adapter.
         while (cursor.moveToNext()){
             arrayList.add(count +" . " + cursor.getString(0));
             favArrayList.add(cursor.getString(0));
             ListView lView = findViewById(R.id.movieListView);
             lView.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, arrayList){
+                //Setting up the text view colour.
                 @Override
                 public View getView(int position, View convertView, ViewGroup parent) {
                     TextView textView = (TextView) super.getView(position, convertView, parent);
@@ -71,13 +74,13 @@ public class DisplayMovies extends AppCompatActivity {
         boolean insertData = false;
         ArrayList<String> checkedValues = new ArrayList<>();
         ListView lView = findViewById(R.id.movieListView);
-        SparseBooleanArray checked = lView.getCheckedItemPositions();
+        SparseBooleanArray checked = lView.getCheckedItemPositions();   //Saving the checked values.
         for (int i = 0; i < lView.getCount() ; i++) {
             if (checked.get(i)){
-                checkedValues.add(favArrayList.get(i));
+                checkedValues.add(favArrayList.get(i)); //Adding the checked values inorder to insert into the db.
             }
         }
-        for (int i = 0; i < checkedValues.size() ; i++) {
+        for (int i = 0; i < checkedValues.size() ; i++) {   //inserting values into the db.
             String title = checkedValues.get(i);
             insertData = movieManiaDBHelper.saveFavMovies(title);
         }

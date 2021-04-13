@@ -39,11 +39,13 @@ public class Favourites extends AppCompatActivity {
         int count = 1;
         int checkedCounter = 0;
 
+        //Checking if the db has any saved values.
         if (cursor.getCount() == 0){
             Toast.makeText(Favourites.this,"NO MOVIES ADDED",Toast.LENGTH_LONG).show();
             return;
         }
 
+        //Iterating through the db and printing the names to the list view using an adapter.
         while (cursor.moveToNext()){
             arrayList.add(count +" . " + cursor.getString(0));
             favArrayList.add(cursor.getString(0));
@@ -68,9 +70,9 @@ public class Favourites extends AppCompatActivity {
 
     public void favSave(View view){
         ListView lView = findViewById(R.id.favMovieListView);
-        SparseBooleanArray checked = lView.getCheckedItemPositions();
+        SparseBooleanArray checked = lView.getCheckedItemPositions();   //Saving the checked values.
         for (int i = 0; i < lView.getCount() ; i++) {
-            if (!checked.get(i)) {
+            if (!checked.get(i)) {  //checking if any items are unchecked and removing them.
                 String word = favArrayList.get(i);
                 movieManiaDBHelper.removeFavMoive(word);
                 Toast.makeText(Favourites.this,"Removed from Favourites",Toast.LENGTH_LONG).show();

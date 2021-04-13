@@ -57,16 +57,19 @@ public class Ratings extends AppCompatActivity {
 
         int count = 1;
 
+        //Checking if the db has any saved values.
         if (cursor.getCount() == 0){
             Toast.makeText(Ratings.this,"NO MOVIES ADDED",Toast.LENGTH_LONG).show();
             return;
         }
 
+        //Iterating through the db and printing the names to the list view using an adapter.
         while (cursor.moveToNext()){
             arrayList.add(count +" . " + cursor.getString(0));
             favArrayList.add(cursor.getString(0));
             ListView lView = findViewById(R.id.movieListViewIMDB);
             lView.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_single_choice, arrayList){
+                //Setting up the text view colour.
                 @Override
                 public View getView(int position, View convertView, ViewGroup parent) {
                     TextView textView = (TextView) super.getView(position, convertView, parent);
@@ -74,7 +77,7 @@ public class Ratings extends AppCompatActivity {
                     return textView;
                 }
             });
-            lView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+            lView.setChoiceMode(ListView.CHOICE_MODE_SINGLE); //Making the choice mode single so only one value can be selected.
             count++;
         }
     }

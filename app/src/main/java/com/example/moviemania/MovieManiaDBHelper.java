@@ -49,14 +49,14 @@ public class MovieManiaDBHelper extends SQLiteOpenHelper {
         return result != -1;
     }
 
-    //To get all movie names
+    //To get all title names from the movies.
     public Cursor getMovieTitle(){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("select TITLE from " + TABLE1 + " order by " + TABLE1_COL1,null);
         return cursor;
     }
 
-    //To get all movie names
+    //To get all movie names.
     public Cursor getMovieDetails(){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("select * from " + TABLE1 + " order by " + TABLE1_COL1,null);
@@ -72,7 +72,7 @@ public class MovieManiaDBHelper extends SQLiteOpenHelper {
         return result != -1;
     }
 
-    //To get the favourite movies.
+    //To get the favourite movie titles.
     public Cursor getFavMovieTitle(){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("select FAVTITLE from " + TABLE2 + " order by " + TABLE2_COL1,null);
